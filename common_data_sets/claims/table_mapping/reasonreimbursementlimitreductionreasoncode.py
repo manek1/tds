@@ -8,7 +8,8 @@ class ReasonReimbursementLimitreductionReasoncode(AbstractGlueTableMapping):
     schema_name = config.IDS_SCHEMA
     distinct_flag = True
     schema = StructType([StructField('reimbursementlimitreductionreasoncode', StringType(), True),
-                         StructField('reimbursementlimitreductionreason', StringType(), True)
+                         StructField('reimbursementlimitreductionreason', StringType(), True),
+                         StructField('sourcesystemid', StringType(), True)
                          ])
 
 
