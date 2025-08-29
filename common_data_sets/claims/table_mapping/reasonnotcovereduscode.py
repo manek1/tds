@@ -8,7 +8,8 @@ class ReasonNotCoveredUsCode(AbstractGlueTableMapping):
     schema_name = config.IDS_SCHEMA
     distinct_flag = True
     schema = StructType([StructField('reasonnotcovereduscode', StringType(), True),
-                         StructField('reasonnotcoveredus', StringType(), True)
+                         StructField('reasonnotcoveredus', StringType(), True),
+                         StructField('sourcesystemid', StringType(), True)
                          ])
 
 
