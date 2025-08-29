@@ -104,7 +104,7 @@ class ClaimsTransformations:
                 claimpayment_df = (claimpayment_df
                                    .join(party_df, on=['partyid', 'sourcesystemid'], how="left")
                                    .join(broadcast(partyroletype_df), on=["partyroletypecode"], how="left")
-                                   .join(payment_method_code_df, on=["paymentmethodcode"], how="left")
+                                   .join(broadcast(payment_method_code_df), on=["paymentmethodcode"], how="left")
                                    .join(broadcast(clm_sts_lvl_1_df), on=["claimpaymentstatuslevel1code"], how='left')
                                    .join(broadcast(clm_sts_lvl_2_df), on=["claimpaymentstatuslevel2code"], how='left')
                                    .join(broadcast(clm_sts_lvl_3_df), on=["claimpaymentstatuslevel3code"], how='left')
@@ -950,11 +950,12 @@ class ClaimsTransformations:
                                   .drop("rsn_limit_rnk"))
 
         reason_df = (reason_df
-                     .join(broadcast(denied_reason_code_df), on=['deniedreasoncode', 'sourcesystemid'], how='inner')
-                     .join(broadcast(reason_nc_us_df), on=["reasonnotcovereduscode"], how='left')
-                     .join(broadcast(reimbursement_limit_df), on=["reimbursementlimitreductionreasoncode"], how='left')
-                     .join(broadcast(customer_reduction_df), on=["reasonableandcustomaryreductionreasoncode"],
-                           how='left')
+                     .join(broadcast(denied_reason_code_df), on=['deniedreasoncode', 'sourcesystemid'], how='left')
+                     .join(broadcast(reason_nc_us_df), on=["reasonnotcovereduscode", 'sourcesystemid'], how='left')
+                     .join(broadcast(reimbursement_limit_df),
+                           on=["reimbursementlimitreductionreasoncode", 'sourcesystemid'], how='left')
+                     .join(broadcast(customer_reduction_df),
+                           on=["reasonableandcustomaryreductionreasoncode", 'sourcesystemid'],how='left')
                      )
 
         return reason_df
