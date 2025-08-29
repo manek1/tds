@@ -8,7 +8,8 @@ class ReasonableAndCustomaryReductionReasonCode(AbstractGlueTableMapping):
     schema_name = config.IDS_SCHEMA
     distinct_flag = True
     schema = StructType([StructField('reasonableandcustomaryreductionreasoncode', StringType(), True),
-                         StructField('reasonableandcustomaryreductionreason', StringType(), True)
+                         StructField('reasonableandcustomaryreductionreason', StringType(), True),
+                         StructField('sourcesystemid', StringType(), True)
                          ])
 
 
